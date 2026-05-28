@@ -1,4 +1,4 @@
-# Step 1: Build the application using Maven and standard Java 21
+# Step 1: Build the application using Maven and Java 21
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
@@ -10,5 +10,5 @@ WORKDIR /app
 COPY --from=build /app/target/JavaInteractiveChat-1.0-SNAPSHOT.jar app.jar
 EXPOSE 12345
 
-# Explicitly running headless mode so it doesn't look for a screen monitor
+# Start the server completely headlessly
 CMD ["java", "-Djava.awt.headless=true", "-jar", "app.jar"]
